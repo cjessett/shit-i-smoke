@@ -1,9 +1,32 @@
+@font-face {
+  font-family: 'gotham-black';
+  src: url('./fonts/Gotham-Black.ttf');
+}
+
+@font-face {
+  font-family: 'gotham-book';
+  src: url('./fonts/Gotham-Book.ttf');
+}
+
 body {
-  margin: 0;
+  margin: 0 0 .5em 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'gotham-black';
 }
 
 h1 {
   font-size: 4em;
+}
+
+a {
+  color: #F8A910;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+p {
+  font-family: 'gotham-book';
+  line-height: 1.5em;
 }

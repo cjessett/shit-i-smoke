@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 
-import logo from './logo.svg';
+import About from './About';
+import logo from './logo.png';
 import './App.css';
 import getCurrentPosition from './utils/getCurrentPosition';
+import getCorrectLatLng from './utils/getCorrectLatLng';
+import getDistance from './utils/getDistance';
 import * as dataSources from './utils/dataSources';
 import pm25ToCigarettes from './utils/pm25ToCigarettes';
 import retry from './utils/retry';
@@ -36,11 +39,6 @@ class App extends Component {
         coords = response.coords;
         const { longitude, latitude } = coords;
 
-        // Uncomment to get random location
-        // coords = {
-        //   latitude: Math.random() * 90,
-        //   longitude: Math.random() * 90
-        // };
         this.setState({ location: { longitude, latitude } });
       }
 
@@ -64,6 +62,16 @@ class App extends Component {
 
   getCigarettes(pm25) {
     return Math.round(pm25ToCigarettes(pm25) * 10) / 10;
+  }
+
+  getDistanceAway() {
+    const { api, location } = this.state;
+    const correctLagLng = getCorrectLatLng(
+      location,
+      { latitude: api.city.geo[0], longitude: api.city.geo[1] },
+    );
+    return Math.round(getDistance(location, correctLagLng)
+  );
   }
 
   renderPresentPast() {
@@ -91,21 +99,36 @@ class App extends Component {
   };
 
   render() {
-    const { api: { pm25, city } } = this.state;
+    const { api: { pm25, city }, loading, error } = this.state;
     const cigarettes = pm25 && this.getCigarettes(pm25);
+    const distance = city.name && this.getDistanceAway();
+    const stationName = city.name && city.name.split(',')[0];
+    const stationCity = city.name && city.name.split(',').slice(1).join(', ');
 
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <img src={logo} alt="logo" />
           <h1 className="App-title">Sh*t, I Smoke.</h1>
         </header>
-      <div>
-        <h2>{this.renderInfo()}</h2>
-        {cigarettes &&
-          <h1>{this.renderShit()}! {this.renderPresentPast()}{' '} {cigarettes} cigarettes today.</h1>}
-        <h5 id="location">{city.name}</h5>
-      </div>
+        <div id="content">
+          {/* Loading / Error */}
+          <h2>{this.renderInfo()}</h2>
+          {/* Location */}
+          {city.name &&
+            <div>
+              <h3 style={{ margin: 0, padding: 0 }} id="location">{stationName},</h3>
+              <h3 style={{ margin: 0, padding: 0 }} id="location">{stationCity}</h3>
+              <p>Measured {distance}km from you.</p>
+            </div>}
+          {/* Cigarrettes */}
+          {cigarettes &&
+            <h1>{this.renderShit()}! {this.renderPresentPast()}{' '}
+              <span className="primary">{cigarettes} cigarettes </span> today.
+            </h1>}
+          {/* About */}
+          {!loading && !error && <About />}
+        </div>
       </div>
     );
   }

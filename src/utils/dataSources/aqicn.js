@@ -9,7 +9,7 @@ const token = process.env.REACT_APP_AQI_TOKEN;
  */
 const aqicn = async ({ latitude, longitude }) => {
   const { data: response } = await axios.get(
-    `http://api.waqi.info/feed/geo:${latitude};${longitude}/?token=${token}`,
+    `https://api.waqi.info/feed/geo:${latitude};${longitude}/?token=${token}`,
     { timeout: 6000 }
   );
 
