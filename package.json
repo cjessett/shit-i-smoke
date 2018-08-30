@@ -1,0 +1,24 @@
+{
+  "name": "shit-i-smoke",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies": {
+    "gh-pages": "^1.2.0",
+    "react-scripts": "1.1.5"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "retry": "^0.12.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build"
+  },
+  "homepage": "https://cjessett.github.io/shit-i-smoke"
+}
