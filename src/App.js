@@ -117,8 +117,8 @@ class App extends Component {
           {/* Location */}
           {city.name &&
             <div>
-              <h3 style={{ margin: 0, padding: 0 }} id="location">{stationName},</h3>
-              <h3 style={{ margin: 0, padding: 0 }} id="location">{stationCity}</h3>
+              <h3 style={{ margin: 0, padding: 0 }}>{stationName},</h3>
+              <h3 style={{ margin: 0, padding: 0 }}>{stationCity}</h3>
               <p>Measured {distance}km from you.</p>
             </div>}
           {/* Cigarrettes */}
