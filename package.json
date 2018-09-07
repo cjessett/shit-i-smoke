@@ -20,5 +20,5 @@
     "predeploy": "yarn run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://cjessett.github.io/shit-i-smoke"
+  "homepage": "https://shit-i-smoke.cjessett.com"
 }
