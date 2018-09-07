@@ -10,6 +10,11 @@
   src: url('./fonts/Gotham-Book.ttf');
 }
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body {
   margin: 0 0 .5em 0;
   padding: 0;
@@ -31,4 +36,13 @@ a:hover {
 p {
   font-family: 'gotham-book';
   line-height: 1.5em;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 5px;
+  width: 100%;
+  overflow: hidden;
+  max-width: 70%;
 }

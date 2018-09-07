@@ -52,6 +52,7 @@
 
   .container {
     display: block;
+    margin-bottom: 2em;
   }
 
   .container-item {
@@ -60,5 +61,13 @@
 
   a {
     font-size: 98%;
+  }
+
+  footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 5px;
   }
 }

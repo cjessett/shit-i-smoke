@@ -128,6 +128,10 @@ class App extends Component {
             </h1>}
           {/* About */}
           {!loading && !error && <About />}
+          {!loading && !error &&
+          <footer>
+            A PWA, inspired by <a href="https://shootismoke.github.io/">Sh**t! I Smoke</a>
+          </footer>}
         </div>
       </div>
     );
